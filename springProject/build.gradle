@@ -25,6 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-devtools:3.4.4'
 	implementation 'org.projectlombok:lombok:1.18.36'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.4.4'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	implementation 'com.oracle.database.jdbc:ojdbc11:23.7.0.25.01'
 }
 
 tasks.named('test') {
