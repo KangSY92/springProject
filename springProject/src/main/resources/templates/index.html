@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+	
+<body>
+	Welcome!		
+	<p th:text="${name}">	</p>
+		
+	<p th:text="#{welcome.message}"></p>
+	<p th:utext="#{welcome.strong}"></p>
+	<p th:utext="#{welcome.iframe}"></p>
+	
+	<p th:if="${name == '홍길동'}">홍길동입니다.</p>
+	
+	<ul>
+		<li th:each="item :${items}" th:text="${item}"></li>
+	</ul>
+	</body>
+	
+</html>
