@@ -1,6 +1,9 @@
 package kr.co.green.member.service;
 
-public interface MemberService {
-	public String register();
+import kr.co.green.member.dto.MemberDTO;
 
+public interface MemberService {
+	public int register(MemberDTO memberDTO);
+
+	public MemberDTO login(MemberDTO memberDTO);
 }

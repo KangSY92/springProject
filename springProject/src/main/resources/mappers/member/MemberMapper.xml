@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-
 <mapper namespace="kr.co.green.member.mapper.MemberMapper">
+	<insert id="register">
+		INSERT INTO member VALUES(member_seq.nextval,
+								  #{id}, 
+								  #{name},
+								  #{password},
+								  DEFAULT,
+								  DEFAULT,
+								  null)
+	</insert>
+	
+	<resultMap id="loginResultMap" type="kr.co.green.member.dto.MemberDTO">
+		<result column="MEMBER_ID" property="memberId"></result>
+		<result column="ID" property="id"></result>
+		<result column="NAME" property="name"></result>
+		<result column="PASSWORD" property="password"></result>
+		<result column="STATUS" property="status"></result>
+		<result column="CREATED_AT" property="createdAt"></result>
+		<result column="UPDATED_AT" property="updatedAt"></result>
+		
+	</resultMap>
+	
+	<select id="login" resultMap="loginResultMap">
+		SELECT * FROM MEMBER WHERE id=#{id} and password=#{password}
+	</select>
 
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
 import kr.co.green.member.dto.MemberDTO;
 import kr.co.green.member.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -27,10 +28,35 @@ public class MemberController {
 	
 	@PostMapping("/register")
 	public String register(MemberDTO memberDTO) {
-		
-		return null;
+		int resert = memberService.register(memberDTO);
+		System.out.println("반환 값 : " + resert);
+		return "redirect:/member/login/form";
 	}
 	
+	@GetMapping("/login/form")
+	public String loginForm() {
+		return "member/login";
+	}
 	
+	@PostMapping("/login")
+	public String login(MemberDTO memberDTO, HttpSession session) {
+		MemberDTO result = memberService.login(memberDTO);
+		
+		if(result != null) {
+			session.setAttribute("memberId", result.getMemberId());
+			session.setAttribute("id", result.getId());
+			session.setAttribute("name", result.getName());
+			session.setAttribute("status", result.getStatus());
+			return "redirect:/";
+		}
+		
+		return "redirect:/member/login/form";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+			session.invalidate(); // 세션 무효화
+		return "redirect:/";
+	}
 	
 }
