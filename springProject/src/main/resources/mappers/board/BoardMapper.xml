@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.green.board.mapper.BoardMapper">
+
+	<resultMap id="boardResultMap" type="kr.co.green.board.dto.BoardDTO">
+		<result column="fb_id" property="fbId" />
+		<result column="title" property="title" />
+		<result column="author" property="author" />
+		<result column="created_date" property="createdDate" />
+		<result column="view_count" property="viewCount" />
+	</resultMap>
+
+	<select id="getAllPosts" resultMap="boardResultMap">
+	SELECT * FROM(
+		SELECT fb_id, title, author, created_date, view_count,
+	   		 	ROW_NUMBER() OVER(ORDER BY created_date DESC) AS rn
+		FROM free_board
+		WHERE status = 'Y')
+	WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
+	</select>
+	
+	<select id="getTotalCount">
+	SELECT count(*)
+	FROM free_board
+	WHERE status ='Y'
+	<choose>
+		<when test="searchDTO.category.equals('title')">
+		 AND title LIKE '%' || #{searchDTO.text} ||'%'
+		</when>
+		<when test="searchDTO.category.equals('content')">
+		 AND content LIKE '%' || #{searchDTO.text} ||'%'
+		</when>
+		<when test="searchDTO.category.equals('author')">
+		 AND author LIKE '%' || #{searchDTO.text} ||'%'
+		</when>
+	</choose>
+	</select>
+	
+	
+	
+	
+</mapper>
