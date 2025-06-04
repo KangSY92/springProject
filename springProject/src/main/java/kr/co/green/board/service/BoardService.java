@@ -8,7 +8,15 @@ import kr.co.green.board.dto.SearchDTO;
 
 public interface BoardService {
 	
-	List<BoardDTO> getAllposts(PageInfoDTO pi);
+	List<BoardDTO> getAllposts(PageInfoDTO pi, SearchDTO searchDTO);
 
 	int getTotalCount(SearchDTO searchDTO);
+	
+	int create(BoardDTO boardDTO, String sessionID);
+	
+	BoardDTO detail(int fbId);
+
+	int delete(int fbId, String author, String sessionId);
+
+	int edit(BoardDTO boardDTO, String sessionId);
 }

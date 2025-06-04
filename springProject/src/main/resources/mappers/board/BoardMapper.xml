@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="kr.co.green.board.mapper.BoardMapper">
 
@@ -11,33 +10,74 @@
 		<result column="view_count" property="viewCount" />
 	</resultMap>
 
-	<select id="getAllPosts" resultMap="boardResultMap">
-	SELECT * FROM(
-		SELECT fb_id, title, author, created_date, view_count,
-	   		 	ROW_NUMBER() OVER(ORDER BY created_date DESC) AS rn
-		FROM free_board
-		WHERE status = 'Y')
-	WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
+	<select id="getAllPosts" resultMap="boardResultMap"> SELECT * FROM( SELECT
+		fb_id, title, author, created_date, view_count, ROW_NUMBER() OVER(ORDER
+		BY created_date DESC) AS rn FROM free_board WHERE status = 'Y'
+		<choose>
+			<when test="searchDTO.category.equals('title')">
+				AND title LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+			<when test="searchDTO.category.equals('content')">
+				AND content LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+			<when test="searchDTO.category.equals('author')">
+				AND author LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+		</choose>
+		) WHERE rn BETWEEN #{pi.offset} AND #{pi.limit} </select>
+
+	<select id="getTotalCount"> SELECT count(*) FROM free_board WHERE status
+		='Y' <choose>
+			<when test="searchDTO.category.equals('title')">
+				AND title LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+			<when test="searchDTO.category.equals('content')">
+				AND content LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+			<when test="searchDTO.category.equals('author')">
+				AND author LIKE '%' || #{searchDTO.text} ||'%'
+			</when>
+		</choose>
 	</select>
-	
-	<select id="getTotalCount">
-	SELECT count(*)
+
+	<insert id="create">
+	INSERT INTO free_board
+	VALUES(free_board_seq.nextval,
+		   #{boardDTO.title},
+		   #{boardDTO.content},
+		   #{boardDTO.author},
+		   default,
+		   null,
+		   default,
+		   'Y')
+	</insert>
+
+	<select id="detail" resultMap="boardResultMap">
+	SELECT fb_id, title, content, author, created_date, view_count
 	FROM free_board
-	WHERE status ='Y'
-	<choose>
-		<when test="searchDTO.category.equals('title')">
-		 AND title LIKE '%' || #{searchDTO.text} ||'%'
-		</when>
-		<when test="searchDTO.category.equals('content')">
-		 AND content LIKE '%' || #{searchDTO.text} ||'%'
-		</when>
-		<when test="searchDTO.category.equals('author')">
-		 AND author LIKE '%' || #{searchDTO.text} ||'%'
-		</when>
-	</choose>
+	WHERE fb_id = #{fbId}
+	AND status = 'Y'
 	</select>
 	
+	<update id="incrementViewCount">
+	UPDATE free_board
+	SET view_count = view_count+1
+	WHERE fb_id = #{fbId}
+	AND status = 'Y'
+	</update>
+		
+	<update id="delete">
+	UPDATE free_board
+	SET status = 'N'
+	WHERE fb_id = #{fbId}
+	</update>
 	
-	
-	
+	<update id="edit">
+	UPDATE free_board
+	SET title = #{boardDTO.title},
+		content = #{boardDTO.content},
+		modified_date = SYSDATE
+	WHERE fb_id = #{boardDTO.fbId}
+	</update>
+		
 </mapper>

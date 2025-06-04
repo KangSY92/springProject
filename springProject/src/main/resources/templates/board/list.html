@@ -39,7 +39,8 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
-				<tr th:each="post, iterStat : ${posts}">
+				<tr th:each="post, iterStat : ${posts}"
+					th:attr="onclick=|location.href='@{/board/detail(fbId=${post.fbId})}'|">
 					<td th:text="${pi.row - iterStat.index}"></td>
 					<td th:text="${post.title}"></td>
 					<td th:text="${post.author}"></td>
@@ -47,7 +48,7 @@
 					<td th:text="${post.viewCount}"></td>
 				</tr>
 			</table>
-			<button class="add-button" onclick="window.location.href = 'enrollForm.html'">등록</button>
+			<button class="add-button" th:if="${session.id != null}" onclick="window.location.href = '/board/create/form'">등록</button>
 		</div>
 
 		<nav aria-label="Page navigation example" style="background-color: white;">
@@ -59,7 +60,7 @@
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 					<a class="page-link" th:if="${pi.currentPage > 1}"
-						th:href="@{/board/list(currentPage=${pi.currentPage-1})}" aria-label="Previous"
+						th:href="@{/board/list(currentPage=${pi.currentPage-1}, category=${search.category}, text=${search.text})}" aria-label="Previous"
 						style="margin-right: 0px">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
@@ -68,7 +69,7 @@
 				<!-- 페이지 버튼-->
 				<li class="page-item" style="margin-right: 0px"
 					th:each="page : ${#numbers.sequence(pi.startPage, pi.endPage)}">
-					<a class="page-link" th:href="@{/board/list(currentPage=${page})}" th:text="${page}"
+					<a class="page-link" th:href="@{/board/list(currentPage=${page}, category=${search.category}, text=${search.text})}" th:text="${page}"
 						style="margin-right: 0px"></a>
 				</li>
 
@@ -78,7 +79,7 @@
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 					<a class="page-link" th:if="${pi.currentPage < pi.maxPage}"
-					th:href="@{/board/list(currentPage=${pi.currentPage+1})}" aria-label="Next">
+					th:href="@{/board/list(currentPage=${pi.currentPage+1}, category=${search.category}, text=${search.text})}" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
