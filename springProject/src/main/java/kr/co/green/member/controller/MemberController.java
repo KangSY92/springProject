@@ -2,11 +2,13 @@ package kr.co.green.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import kr.co.green.member.dto.MemberDTO;
 import kr.co.green.member.service.impl.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +29,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("/register")
-	public String register(MemberDTO memberDTO) {
+	public String register(@Valid MemberDTO memberDTO, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("bindingResult", bindingResult);  //생략 가능
+			return "member/register";
+		}
+		
 		int resert = memberService.register(memberDTO);
-		System.out.println("반환 값 : " + resert);
 		return "redirect:/member/login/form";
 	}
 	

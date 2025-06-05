@@ -24,7 +24,7 @@
 	</resultMap>
 	
 	<select id="login" resultMap="loginResultMap">
-		SELECT * FROM MEMBER WHERE id=#{id} and password=#{password}
+		SELECT * FROM MEMBER WHERE id=#{id}
 	</select>
 
 </mapper>
