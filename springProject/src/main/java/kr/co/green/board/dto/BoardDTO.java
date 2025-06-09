@@ -18,5 +18,6 @@ public class BoardDTO {
 	private int viewCount;
 	private String status;
 
+	private FileDTO fileDTO = new FileDTO();
 	
 }

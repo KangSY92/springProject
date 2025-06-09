@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.green.board.dto.BoardDTO;
+import kr.co.green.board.dto.FileDTO;
 import kr.co.green.board.dto.PageInfoDTO;
 import kr.co.green.board.dto.SearchDTO;
 
@@ -26,5 +27,12 @@ public interface BoardMapper {
 	int delete(@Param("fbId") int fbId);
 
 	int edit(@Param("boardDTO") BoardDTO boardDTO);
+	
+	int createFile(@Param("fileDTO") FileDTO fileDTO);
+
+	String getFileChangeName(@Param("fbId") int fbId);
+
+	void deleteFile(@Param("fbId") int fbId, @Param("changeName") String changeName);
+	
 
 }

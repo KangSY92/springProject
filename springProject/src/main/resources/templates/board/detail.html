@@ -26,6 +26,7 @@
             </div>
             <hr> 
             <div style="margin-top:20px; margin-bottom: 20px;">
+				<img th:if="${board.fileDTO.changeName != null}" th:src="${board.fileDTO.RESOURCES_PATH} + ${board.fileDTO.changeName}"/>
                 <p class="card-text" th:text="${board.content}"></p>
             </div>
         </div>

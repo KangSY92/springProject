@@ -5,14 +5,23 @@
 	<resultMap id="boardResultMap" type="kr.co.green.board.dto.BoardDTO">
 		<result column="fb_id" property="fbId" />
 		<result column="title" property="title" />
+		<result column="content" property="content" />
 		<result column="author" property="author" />
 		<result column="created_date" property="createdDate" />
 		<result column="view_count" property="viewCount" />
+		
+		<association property="fileDTO" javaType="kr.co.green.board.dto.FileDTO">
+		<result column="change_name" property="changeName" />
+		</association>
 	</resultMap>
 
-	<select id="getAllPosts" resultMap="boardResultMap"> SELECT * FROM( SELECT
+	<select id="getAllPosts" resultMap="boardResultMap">
+	SELECT * FROM( SELECT
 		fb_id, title, author, created_date, view_count, ROW_NUMBER() OVER(ORDER
-		BY created_date DESC) AS rn FROM free_board WHERE status = 'Y'
+		BY created_date DESC) AS rn
+		FROM free_board fb
+		
+		WHERE status = 'Y'
 		<choose>
 			<when test="searchDTO.category.equals('title')">
 				AND title LIKE '%' || #{searchDTO.text} ||'%'
@@ -41,21 +50,37 @@
 	</select>
 
 	<insert id="create">
-	INSERT INTO free_board
-	VALUES(free_board_seq.nextval,
-		   #{boardDTO.title},
-		   #{boardDTO.content},
-		   #{boardDTO.author},
-		   default,
-		   null,
-		   default,
-		   'Y')
+		<selectKey keyProperty="boardDTO.fbId" resultType="int" order="BEFORE">
+			SELECT free_board_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO free_board
+		VALUES(#{boardDTO.fbId},
+			   #{boardDTO.title},
+			   #{boardDTO.content},
+			   #{boardDTO.author},
+			   default,
+			   null,
+			   default,
+			   'Y')
+	</insert>
+	
+	<insert id="createFile">
+	INSERT INTO free_board_file
+	VALUES (free_board_file_seq.nextval,
+			#{fileDTO.fbId},
+			#{fileDTO.changeName},
+			#{fileDTO.originalName},
+			#{fileDTO.LOCAL_PATH},
+			DEFAULT)
+	
 	</insert>
 
 	<select id="detail" resultMap="boardResultMap">
-	SELECT fb_id, title, content, author, created_date, view_count
-	FROM free_board
-	WHERE fb_id = #{fbId}
+	SELECT fb.fb_id, title, content, author, created_date, view_count, change_name
+	FROM free_board fb
+	LEFT JOIN free_board_file fbf
+	ON fb.fb_id = fbf.fb_id
+	WHERE fb.fb_id = #{fbId}
 	AND status = 'Y'
 	</select>
 	
@@ -79,5 +104,19 @@
 		modified_date = SYSDATE
 	WHERE fb_id = #{boardDTO.fbId}
 	</update>
+	
+	<select id="getFileChangeName">
+	SELECT change_name
+	FROM free_board_file
+	WHERE fb_id = #{fbId}
+	
+	</select>
+	
+	<delete id="deleteFile">
+	DELETE FROM free_board_file
+	WHERE fb_id=#{fbId}
+	AND change_name = #{changeName}
+	</delete>
+	
 		
 </mapper>
