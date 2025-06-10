@@ -31,7 +31,6 @@ public class FileUpload {
 		fileDTO.setOriginalName(originalName);
 		fileDTO.setChangeName(changeName);
 		
-		throw new IOException("예외발생");
 		
 	}
 	

@@ -1,0 +1,4 @@
+[2025-06-10 12:33:08.047]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+[2025-06-10 12:33:08.052]  WARN 4700 --- [p-nio-80-exec-6] c.z.h.u.DriverDataSource                 : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-06-10 12:33:08.366]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@50f8b69a
+[2025-06-10 12:33:08.368]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.

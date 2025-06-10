@@ -1,0 +1,23 @@
+[2025-06-10 11:33:52.395]  INFO ${sys:PID} --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [kr.co.green.member.MemberRegisterTest]: MemberRegisterTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2025-06-10 11:33:52.524]  INFO ${sys:PID} --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration kr.co.green.SpringProjectApplication for test class kr.co.green.member.MemberRegisterTest
+[2025-06-10 11:33:52.655]  INFO ${sys:PID} --- [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+[2025-06-10 11:33:52.853]  INFO 12328 --- [kground-preinit] o.h.v.i.u.Version                        : HV000001: Hibernate Validator 8.0.2.Final
+[2025-06-10 11:33:52.900]  INFO 12328 --- [           main] k.c.g.m.MemberRegisterTest               : Starting MemberRegisterTest using Java 17.0.12 with PID 12328 (started by GR in C:\dev\git-workspace\springProject)
+[2025-06-10 11:33:52.910]  INFO 12328 --- [           main] k.c.g.m.MemberRegisterTest               : No active profile set, falling back to 1 default profile: "default"
+[2025-06-10 11:33:54.369]  WARN 12328 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2b994584-ca71-4814-b91a-8a2288bc65ec
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2025-06-10 11:33:54.376]  INFO 12328 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2025-06-10 11:33:55.002]  INFO 12328 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+[2025-06-10 11:33:55.002]  INFO 12328 --- [           main] o.s.t.w.s.TestDispatcherServlet          : Initializing Servlet ''
+[2025-06-10 11:33:55.004]  INFO 12328 --- [           main] o.s.t.w.s.TestDispatcherServlet          : Completed initialization in 2 ms
+[2025-06-10 11:33:55.040]  INFO 12328 --- [           main] k.c.g.m.MemberRegisterTest               : Started MemberRegisterTest in 2.395 seconds (process running for 3.604)
+[2025-06-10 11:33:55.069]  INFO 12328 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+[2025-06-10 11:33:55.073]  WARN 12328 --- [           main] c.z.h.u.DriverDataSource                 : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-06-10 11:33:55.446]  INFO 12328 --- [           main] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@3a7469ca
+[2025-06-10 11:33:55.449]  INFO 12328 --- [           main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+[2025-06-10 11:33:56.472]  INFO 12328 --- [ionShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+[2025-06-10 11:33:56.489]  INFO 12328 --- [ionShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
