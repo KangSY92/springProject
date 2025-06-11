@@ -1,0 +1,7 @@
+[2025-06-11 10:01:07.678]  INFO 8144 --- [p-nio-80-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-06-11 10:01:07.684]  INFO 8144 --- [p-nio-80-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+[2025-06-11 10:01:07.688]  INFO 8144 --- [p-nio-80-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 4 ms
+[2025-06-11 10:01:13.190]  INFO 8144 --- [p-nio-80-exec-3] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+[2025-06-11 10:01:13.192]  WARN 8144 --- [p-nio-80-exec-3] c.z.h.u.DriverDataSource                 : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2025-06-11 10:01:13.520]  INFO 8144 --- [p-nio-80-exec-3] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@3f870561
+[2025-06-11 10:01:13.521]  INFO 8144 --- [p-nio-80-exec-3] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.

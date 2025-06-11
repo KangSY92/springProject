@@ -15,12 +15,9 @@ import lombok.Setter;
 public class MemberDTO {
 	private int memberId;
 	
-	@NotBlank(message="ID는 필수입력입니다.")
-	@Size(min=4, max=30, message="ID는 4자 이상 30자 이하여야합니다.")
 	private String id;
 	
-	@NotBlank
-	@Pattern(regexp = "^[가-힣]+$")
+
 	private String name;
 	private String password;
 	private String confirmPassword;

@@ -1,4 +1,7 @@
-[2025-06-10 12:33:08.047]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
-[2025-06-10 12:33:08.052]  WARN 4700 --- [p-nio-80-exec-6] c.z.h.u.DriverDataSource                 : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-[2025-06-10 12:33:08.366]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@50f8b69a
-[2025-06-10 12:33:08.368]  INFO 4700 --- [p-nio-80-exec-6] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+[2025-06-11 11:37:41.365]  INFO 11100 --- [n(32)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+[2025-06-11 11:37:41.370]  INFO 11100 --- [n(32)-127.0.0.1] o.s.b.w.e.t.GracefulShutdown             : Commencing graceful shutdown. Waiting for active requests to complete
+[2025-06-11 11:37:41.372]  INFO 11100 --- [tomcat-shutdown] o.a.c.h.Http11NioProtocol                : Pausing ProtocolHandler ["http-nio-80"]
+[2025-06-11 11:37:41.414]  INFO 11100 --- [tomcat-shutdown] o.s.b.w.e.t.GracefulShutdown             : Graceful shutdown complete
+[2025-06-11 11:37:41.415]  INFO 11100 --- [n(32)-127.0.0.1] o.a.c.h.Http11NioProtocol                : Stopping ProtocolHandler ["http-nio-80"]
+[2025-06-11 11:37:41.419]  INFO 11100 --- [n(32)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+[2025-06-11 11:37:41.430]  INFO 11100 --- [n(32)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.

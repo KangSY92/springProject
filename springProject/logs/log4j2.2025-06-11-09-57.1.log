@@ -1,54 +1,17 @@
-[2025-06-11 10:18:17.741] ERROR 8144 --- [p-nio-80-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DuplicateKeyException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: 무결성 제약 조건(ORACLE.SYS_C008388)에 위배됩니다
+[2025-06-11 09:57:04.647]  INFO 8144 --- [p-nio-80-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2025-06-11 09:57:04.649]  INFO 8144 --- [p-nio-80-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+[2025-06-11 09:57:04.650]  INFO 8144 --- [p-nio-80-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 1 ms
+[2025-06-11 09:57:04.754] ERROR 8144 --- [p-nio-80-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.green.member.model.mapper.MemberMapper.register] with root cause
 
-https://docs.oracle.com/error-help/db/ora-00001/
-### The error may exist in file [C:\dev\git-workspace\springProject\bin\main\mappers\member\MemberMapper.xml]
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: INSERT INTO member VALUES(member_seq.nextval,           ?,            ?,           ?,           DEFAULT,           DEFAULT,           null)
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-00001: 무결성 제약 조건(ORACLE.SYS_C008388)에 위배됩니다
-
-https://docs.oracle.com/error-help/db/ora-00001/
-; ORA-00001: 무결성 제약 조건(ORACLE.SYS_C008388)에 위배됩니다
-
-https://docs.oracle.com/error-help/db/ora-00001/] with root cause
-
-oracle.jdbc.OracleDatabaseException: ORA-00001: 무결성 제약 조건(ORACLE.SYS_C008388)에 위배됩니다
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:723) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:615) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1372) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:969) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:237) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:524) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:298) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1508) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:2009) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1622) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3973) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OraclePreparedStatement.doExecute(OraclePreparedStatement.java:4447) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4433) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1029) ~[ojdbc11-23.7.0.25.01.jar:23.7.0.25.01]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-5.1.0.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-5.1.0.jar:?]
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184) ~[mybatis-3.5.17.jar:3.5.17]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333) ~[mybatis-spring-3.0.4.jar:3.0.4]
-	at jdk.proxy2/jdk.proxy2.$Proxy87.insert(Unknown Source) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.4.jar:3.0.4]
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62) ~[mybatis-3.5.17.jar:3.5.17]
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.17.jar:3.5.17]
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.green.member.model.mapper.MemberMapper.register
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96) ~[mybatis-3.5.17.jar:3.5.17]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708) ~[?:?]
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94) ~[mybatis-3.5.17.jar:3.5.17]
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.17.jar:3.5.17]
-	at jdk.proxy8/jdk.proxy8.$Proxy111.register(Unknown Source) ~[?:?]
+	at jdk.proxy5/jdk.proxy5.$Proxy106.register(Unknown Source) ~[?:?]
 	at kr.co.green.member.service.impl.MemberServiceImpl.register(MemberServiceImpl.java:32) ~[main/:?]
 	at kr.co.green.member.controller.MemberController.register(MemberController.java:39) ~[main/:?]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]

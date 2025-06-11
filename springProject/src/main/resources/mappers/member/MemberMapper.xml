@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="kr.co.green.member.mapper.MemberMapper">
+<mapper namespace="kr.co.green.member.model.mapper.MemberMapper">
 	<insert id="register">
 		INSERT INTO member VALUES(member_seq.nextval,
 								  #{id}, 
@@ -12,19 +12,22 @@
 								  null)
 	</insert>
 	
-	<resultMap id="loginResultMap" type="kr.co.green.member.dto.MemberDTO">
+	<resultMap id="loginResultMap" type="kr.co.green.member.model.vo.MemberVO">
 		<result column="MEMBER_ID" property="memberId"></result>
 		<result column="ID" property="id"></result>
 		<result column="NAME" property="name"></result>
 		<result column="PASSWORD" property="password"></result>
 		<result column="STATUS" property="status"></result>
-		<result column="CREATED_AT" property="createdAt"></result>
-		<result column="UPDATED_AT" property="updatedAt"></result>
 		
 	</resultMap>
 	
 	<select id="login" resultMap="loginResultMap">
-		SELECT * FROM MEMBER WHERE id=#{id}
+		SELECT member_id,
+			   id,
+			   name,
+			   password,
+			   status
+		FROM MEMBER WHERE id=#{id}
 	</select>
 
 </mapper>
